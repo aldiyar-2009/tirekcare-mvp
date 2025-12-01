@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Специалисты TIREKCARE - Наша Экспертиза</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #F0F8F5 0%, #FFFFFF 100%); }
+        .card-shadow { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .text-primary { color: #2D3748; }
+        .text-accent { color: #FF7F50; }
+        .bg-accent { background-color: #FF7F50; }
+        .bg-accent:hover { background-color: #FF6B6B; }
+        .floating-chat { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">TIREKCARE 🌈</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
+                        <a href="specialists.html" class="text-accent font-medium">Специалисты</a>
+                        <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
+                        <a href="profile.html" class="text-gray-600 hover:text-accent transition-colors">Профиль</a>
+                        <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
+                        <a href="auth.html" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">Вход</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
+                <a href="specialists.html" class="block px-3 py-2 text-accent font-medium">Специалисты</a>
+                <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
+                <a href="profile.html" class="block px-3 py-2 text-gray-600">Профиль</a>
+                <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
+                <a href="auth.html" class="block px-3 py-2 bg-accent text-white rounded-lg mx-3 text-center">Вход</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Hero секция -->
+        <section class="py-20 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+                    Наша Экспертиза — Научный Подход и Профессионализм! 🔬
+                </h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Профессионалы, которые создают научно обоснованный контент
+                </p>
+            </div>
+        </section>
+
+        <!-- Блок специалистов -->
+        <section class="py-16 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-3xl font-bold text-center text-primary mb-12">Наши Специалисты 🧠</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Специалист 1 -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Д-р Петрова Ирина" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Д-р Петрова Ирина</h4>
+                        <p class="text-accent font-semibold mb-3">Главный Логопед</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Автор методики раннего вмешательства</p>
+                            <p>🏅 Доктор медицинских наук</p>
+                            <p>🏅 Национальная награда "Золотой Логопед"</p>
+                            <p>🏅 15 лет практики</p>
+                        </div>
+                    </div>
+
+                    <!-- Специалист 2 -->
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Сидорова Мария" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Сидорова Мария</h4>
+                        <p class="text-accent font-semibold mb-3">Дефектолог</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Разработчик программы "Маленькие шаги"</p>
+                            <p>🏅 Кандидат психологических наук</p>
+                            <p>🏅 Сертифицированный специалист по АВА-терапии</p>
+                            <p>🏅 12 лет опыта</p>
+                        </div>
+                    </div>
+
+                    <!-- Специалист 3 -->
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Кузнецов Андрей" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Кузнецов Андрей</h4>
+                        <p class="text-accent font-semibold mb-3">Нейропсихолог</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Эксперт в области детской нейропсихологии</p>
+                            <p>🏅 Доктор психологических наук</p>
+                            <p>🏅 Автор 50+ научных публикаций</p>
+                            <p>🏅 20 лет исследований</p>
+                        </div>
+                    </div>
+
+                    <!-- Специалист 4 -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Волкова Елена" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Волкова Елена</h4>
+                        <p class="text-accent font-semibold mb-3">Специалист по сенсорной интеграции</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Сертифицированный терапевт SI</p>
+                            <p>🏅 Разработчик сенсорных упражнений</p>
+                            <p>🏅 Международная сертификация SIPT</p>
+                            <p>🏅 10 лет практики</p>
+                        </div>
+                    </div>
+
+                    <!-- Специалист 5 -->
+                    <div class="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Михайлова Ольга" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Михайлова Ольга</h4>
+                        <p class="text-accent font-semibold mb-3">Эрготерапевт</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Эксперт по развитию мелкой моторики</p>
+                            <p>🏅 Кандидат медицинских наук</p>
+                            <p>🏅 Автор методики "Умные пальчики"</p>
+                            <p>🏅 14 лет опыта</p>
+                        </div>
+                    </div>
+
+                    <!-- Специалист 6 -->
+                    <div class="bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-xl card-shadow text-center specialist-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&crop=face" alt="Новиков Дмитрий" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white">
+                        <h4 class="text-xl font-bold text-primary mb-2">Новиков Дмитрий</h4>
+                        <p class="text-accent font-semibold mb-3">Детский психиатр</p>
+                        <div class="text-sm text-gray-600 space-y-2">
+                            <p>🏅 Ведущий специалист по аутизму</p>
+                            <p>🏅 Доктор медицинских наук</p>
+                            <p>🏅 Член Всемирной организации здравоохранения</p>
+                            <p>🏅 18 лет клинической практики</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок партнеров -->
+        <section class="py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-3xl font-bold text-center text-primary mb-12">Наши Партнеры 🤝</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                    <div class="text-center p-6 bg-white rounded-xl card-shadow">
+                        <div class="text-2xl font-bold text-accent mb-2">МГУ</div>
+                        <p class="text-sm text-gray-600">Московский государственный университет</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl card-shadow">
+                        <div class="text-2xl font-bold text-accent mb-2">РАО</div>
+                        <p class="text-sm text-gray-600">Российская академия образования</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl card-shadow">
+                        <div class="text-2xl font-bold text-accent mb-2">МИР</div>
+                        <p class="text-sm text-gray-600">Международный институт реабилитации</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl card-shadow">
+                        <div class="text-2xl font-bold text-accent mb-2">ФФД</div>
+                        <p class="text-sm text-gray-600">Фонд помощи детям</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-white py-8 px-4 border-t">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600">&copy; 2025 TIREKCARE. Все права защищены. ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Чат поддержки -->
+    <div class="floating-chat">
+        <button id="chat-btn" class="bg-accent text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Модальное окно чата -->
+    <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-end justify-end">
+        <div class="bg-white rounded-t-lg shadow-xl w-full max-w-md mr-4 mb-0">
+            <div class="bg-accent text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h4 class="font-semibold">Чат поддержки 💬</h4>
+                <button id="close-chat" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 h-64 overflow-y-auto" id="chat-messages">
+                <div class="bg-gray-100 p-3 rounded-lg mb-3">
+                    <p class="text-sm">Здравствуйте! Чем могу помочь? 😊</p>
+                </div>
+            </div>
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" placeholder="Введите сообщение..." class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                    <button id="send-message" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

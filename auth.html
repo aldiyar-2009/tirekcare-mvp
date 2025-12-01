@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в TIREKCARE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #F0F8F5 0%, #FFFFFF 100%); }
+        .card-shadow { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .text-primary { color: #2D3748; }
+        .text-accent { color: #FF7F50; }
+        .bg-accent { background-color: #FF7F50; }
+        .bg-accent:hover { background-color: #FF6B6B; }
+        .floating-chat { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">TIREKCARE 🌈</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
+                        <a href="specialists.html" class="text-gray-600 hover:text-accent transition-colors">Специалисты</a>
+                        <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
+                        <a href="profile.html" class="text-gray-600 hover:text-accent transition-colors">Профиль</a>
+                        <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
+                        <a href="auth.html" class="text-accent font-medium">Вход</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
+                <a href="specialists.html" class="block px-3 py-2 text-gray-600">Специалисты</a>
+                <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
+                <a href="profile.html" class="block px-3 py-2 text-gray-600">Профиль</a>
+                <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
+                <a href="auth.html" class="block px-3 py-2 text-accent font-medium bg-gray-100 rounded-lg mx-3 text-center">Вход</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="py-20 px-4">
+        <div class="max-w-md mx-auto">
+            <div class="bg-white rounded-xl card-shadow p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-primary mb-2">Добро пожаловать! 👋</h2>
+                    <p class="text-gray-600">Войдите в свой аккаунт TIREKCARE</p>
+                </div>
+
+                <!-- Форма входа -->
+                <form id="login-form" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                        <input type="password" id="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-accent focus:ring-accent">
+                            <span class="ml-2 text-sm text-gray-600">Запомнить меня</span>
+                        </label>
+                        <a href="#" class="text-sm text-accent hover:text-opacity-80">Забыли пароль?</a>
+                    </div>
+                    <button type="submit" class="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                        Войти
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Нет аккаунта? 
+                        <button id="show-register" class="text-accent font-semibold hover:text-opacity-80">Зарегистрироваться</button>
+                    </p>
+                </div>
+
+                <!-- Форма регистрации (скрыта по умолчанию) -->
+                <form id="register-form" class="space-y-6 hidden">
+                    <div>
+                        <label for="reg-name" class="block text-sm font-medium text-gray-700 mb-2">Имя</label>
+                        <input type="text" id="reg-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="reg-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="reg-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="reg-password" class="block text-sm font-medium text-gray-700 mb-2">Пароль</label>
+                        <input type="password" id="reg-password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="child-age" class="block text-sm font-medium text-gray-700 mb-2">Возраст ребенка</label>
+                        <select id="child-age" name="child-age" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                            <option value="">Выберите возраст</option>
+                            <option value="2-3">2-3 года</option>
+                            <option value="4-5">4-5 лет</option>
+                            <option value="6-7">6-7 лет</option>
+                            <option value="8-9">8-9 лет</option>
+                            <option value="10+">10+ лет</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="child-diagnosis" class="block text-sm font-medium text-gray-700 mb-2">Особенности развития (опционально)</label>
+                        <textarea id="child-diagnosis" name="child-diagnosis" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Кратко опишите особенности развития вашего ребенка..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-accent text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                        Зарегистрироваться
+                    </button>
+                </form>
+
+                <div id="register-link" class="mt-6 text-center hidden">
+                    <p class="text-sm text-gray-600">
+                        Уже есть аккаунт? 
+                        <button id="show-login" class="text-accent font-semibold hover:text-opacity-80">Войти</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-white py-8 px-4 border-t mt-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600">&copy; 2025 TIREKCARE. Все права защищены. ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Чат поддержки -->
+    <div class="floating-chat">
+        <button id="chat-btn" class="bg-accent text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Модальное окно чата -->
+    <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-end justify-end">
+        <div class="bg-white rounded-t-lg shadow-xl w-full max-w-md mr-4 mb-0">
+            <div class="bg-accent text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h4 class="font-semibold">Чат поддержки 💬</h4>
+                <button id="close-chat" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 h-64 overflow-y-auto" id="chat-messages">
+                <div class="bg-gray-100 p-3 rounded-lg mb-3">
+                    <p class="text-sm">Здравствуйте! Чем могу помочь? 😊</p>
+                </div>
+            </div>
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" placeholder="Введите сообщение..." class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                    <button id="send-message" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

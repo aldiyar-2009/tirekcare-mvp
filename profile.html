@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный профиль - TIREKCARE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #F0F8F5 0%, #FFFFFF 100%); }
+        .card-shadow { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .text-primary { color: #2D3748; }
+        .text-accent { color: #FF7F50; }
+        .bg-accent { background-color: #FF7F50; }
+        .bg-accent:hover { background-color: #FF6B6B; }
+        .floating-chat { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">TIREKCARE 🌈</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
+                        <a href="specialists.html" class="text-gray-600 hover:text-accent transition-colors">Специалисты</a>
+                        <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
+                        <a href="profile.html" class="text-accent font-medium">Профиль</a>
+                        <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
+                        <button id="logout-btn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-all">Выход</button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
+                <a href="specialists.html" class="block px-3 py-2 text-gray-600">Специалисты</a>
+                <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
+                <a href="profile.html" class="block px-3 py-2 text-accent font-medium">Профиль</a>
+                <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
+                <button id="logout-btn-mobile" class="block w-full px-3 py-2 text-gray-600 bg-gray-100 rounded-lg mx-3 text-center">Выход</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="py-8 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Левая колонка - Профиль -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-xl card-shadow p-6 mb-6">
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&crop=face" alt="Аватар" class="w-24 h-24 rounded-full mx-auto mb-4">
+                            <h2 class="text-xl font-bold text-primary mb-1">Мария Иванова</h2>
+                            <p class="text-gray-600 text-sm mb-4">Родитель</p>
+                            <button class="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all">
+                                Редактировать профиль
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Информация о ребенке -->
+                    <div class="bg-white rounded-xl card-shadow p-6">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Информация о ребенке 👶</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">Имя</label>
+                                <p class="text-gray-900">Анна</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">Возраст</label>
+                                <p class="text-gray-900">7 лет</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">Диагноз</label>
+                                <p class="text-gray-900">Задержка речевого развития</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-700">Уровень прогресса</label>
+                                <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-1">65% завершено</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка - Прогресс и активность -->
+                <div class="lg:col-span-2">
+                    <!-- Статистика -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">24</div>
+                            <p class="text-gray-600 text-sm">Видеоурока пройдено</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">18</div>
+                            <p class="text-gray-600 text-sm">Дней занятий подряд</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2">4.8</div>
+                            <p class="text-gray-600 text-sm">Средний прогресс</p>
+                        </div>
+                    </div>
+
+                    <!-- Недавняя активность -->
+                    <div class="bg-white rounded-xl card-shadow p-6 mb-6">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Недавняя активность 📊</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15M9 10v4a2 2 0 002 2h2a2 2 0 002-2v-4M9 10V9a2 2 0 012-2h2a2 2 0 012 2v1"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-gray-900">Артикуляционная гимнастика</h4>
+                                    <p class="text-sm text-gray-600">Завершено сегодня в 14:30</p>
+                                </div>
+                                <span class="text-green-600 font-semibold">+15 очков</span>
+                            </div>
+                            
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-gray-900">Развитие мелкой моторики</h4>
+                                    <p class="text-sm text-gray-600">Завершено вчера в 16:45</p>
+                                </div>
+                                <span class="text-green-600 font-semibold">+20 очков</span>
+                            </div>
+
+                            <div class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-gray-900">Сенсорная интеграция</h4>
+                                    <p class="text-sm text-gray-600">Завершено 2 дня назад</p>
+                                </div>
+                                <span class="text-green-600 font-semibold">+18 очков</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Рекомендации -->
+                    <div class="bg-white rounded-xl card-shadow p-6">
+                        <h3 class="text-lg font-semibold text-primary mb-4">Рекомендуемые уроки 🎯</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Логические игры</h4>
+                                    <p class="text-sm text-gray-600">Подходит для 7 лет</p>
+                                </div>
+                                <button class="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all">
+                                    Начать
+                                </button>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Социальные навыки</h4>
+                                    <p class="text-sm text-gray-600">Рекомендовано специалистом</p>
+                                </div>
+                                <button class="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 transition-all">
+                                    Начать
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-white py-8 px-4 border-t mt-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600">&copy; 2025 TIREKCARE. Все права защищены. ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Чат поддержки -->
+    <div class="floating-chat">
+        <button id="chat-btn" class="bg-accent text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Модальное окно чата -->
+    <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-end justify-end">
+        <div class="bg-white rounded-t-lg shadow-xl w-full max-w-md mr-4 mb-0">
+            <div class="bg-accent text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h4 class="font-semibold">Чат поддержки 💬</h4>
+                <button id="close-chat" class="text-white hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 h-64 overflow-y-auto" id="chat-messages">
+                <div class="bg-gray-100 p-3 rounded-lg mb-3">
+                    <p class="text-sm">Здравствуйте! Чем могу помочь? 😊</p>
+                </div>
+            </div>
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" placeholder="Введите сообщение..." class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                    <button id="send-message" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

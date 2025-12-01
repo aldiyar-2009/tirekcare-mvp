@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIREKCARE: 🌈 Поддержка и Развитие для Детей</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('resources/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B, #FFE066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(255, 107, 107, 0.3); }
+            to { box-shadow: 0 0 30px rgba(255, 107, 107, 0.6); }
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FF6B6B;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">TIREKCARE</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-800 font-medium">Главная</a>
+                        <a href="specialists.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Специалисты</a>
+                        <a href="catalog.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Каталог</a>
+                        <a href="profile.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Профиль</a>
+                        <a href="support.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Поддержка</a>
+                        <a href="#" onclick="showAuthModal()" class="nav-link bg-coral-500 text-white px-4 py-2 rounded-lg hover:bg-coral-600">Войти</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-600 hover:text-gray-800">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-20 pb-16">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+                        TIREKCARE: <span class="gradient-text">🌈</span>
+                        <br>Поддержка и Развитие для Детей!
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Мы создаём доступные и простые цифровые инструменты реабилитации для детей с особенностями развития! 
+                        Наша цель — помочь семьям сделать занятия регулярными и научно обоснованными!
+                    </p>
+                    <button onclick="showAuthModal()" class="bg-gradient-to-r from-orange-400 to-coral-500 text-white px-8 py-4 rounded-full text-lg font-semibold pulse-glow hover:from-orange-500 hover:to-coral-600 transform hover:scale-105 transition-all duration-300">
+                        Начать Занятия! 🚀
+                    </button>
+                </div>
+                <div class="relative">
+                    <div class="floating">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">🏡</div>
+                                    <h3 class="font-semibold text-gray-800">Доступность</h3>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">📱</div>
+                                    <h3 class="font-semibold text-gray-800">Простота</h3>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">🔬</div>
+                                    <h3 class="font-semibold text-gray-800">Научность</h3>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-4xl mb-2">🤖</div>
+                                    <h3 class="font-semibold text-gray-800">AI-Помощник</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Почему выбирают TIREKCARE? ✨</h2>
+                <p class="text-xl text-gray-600">Научно обоснованные методики в игровой форме</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🏡</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Доступность</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Доступно для каждой семьи, в любое время и в любом месте через вебсайт и мобильное приложение
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Простота</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Простота в использовании с пошаговыми видеоуроками и понятными инструкциями для родителей
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card-hover bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🔬</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Научная База</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Все упражнения основаны на проверенных научных методиках и рекомендациях специалистов
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="card-hover bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Индивидуальность</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Индивидуальные планы занятий и персональные советы от AI-помощника
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="card-hover bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8 text-center">
+                    <div class="text-6xl mb-4">🎮</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Мотивация</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Занятия в игровой форме для максимальной мотивации ребёнка и регулярной практики
+                    </p>
+                </div>
+
+                <!-- CTA Card -->
+                <div class="card-hover bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 text-center flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Готовы начать?</h3>
+                    <p class="text-gray-600 mb-6">Присоединяйтесь к тысячам семей, которые уже доверяют TIREKCARE</p>
+                    <button onclick="showAuthModal()" class="bg-gradient-to-r from-orange-400 to-coral-500 text-white px-6 py-3 rounded-full font-semibold hover:from-orange-500 hover:to-coral-600 transform hover:scale-105 transition-all duration-300">
+                        Начать прямо сейчас! 🎯
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Reviews Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Что говорят о нас Родители? ⭐⭐⭐⭐⭐</h2>
+                <p class="text-xl text-gray-600">
+                    Реальные отзывы от семей, которые уже доверяют TIREKCARE
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="resources/child-avatar-1.jpg" alt="Мария" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Мария, мама Саши (5 лет)</h3>
+                            <div class="flex text-yellow-400">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        "Регулярные занятия помогли нам сохранить прогревотивно! Саша стал более общительным, 
+                        появился интерес к занятиям. Особенно нравятся игровые упражнения."
+                    </p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="resources/child-avatar-2.jpg" alt="Анна" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Анна, мама Кати (7 лет)</h3>
+                            <div class="flex text-yellow-400">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        "Очень удобно заниматься дома в удобное время. Поддержка специалистов просто супер! 
+                        Всегда помогут и подскажут. Рекомендую всем родителям!"
+                    </p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-100 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="resources/child-avatar-3.jpg" alt="Ольга" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Ольга, мама Димы (6 лет)</h3>
+                            <div class="flex text-yellow-400">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        "Замечательная платформа! Дима с удовольствием занимается каждый день. 
+                        Виден прогресс в развитии речи и моторики. Спасибо за такой проект!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-100 to-green-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Наши достижения 📊</h2>
+                <p class="text-xl text-gray-600">Результаты, которыми мы гордимся</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-blue-600 mb-2" data-count="5000">0</div>
+                    <p class="text-gray-600 font-medium">Счастливых семей</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-green-600 mb-2" data-count="15000">0</div>
+                    <p class="text-gray-600 font-medium">Выполненных упражнений</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-orange-600 mb-2" data-count="95">0</div>
+                    <p class="text-gray-600 font-medium">% положительных отзывов</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-purple-600 mb-2" data-count="200">0</div>
+                    <p class="text-gray-600 font-medium">Видеоуроков</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-4">TIREKCARE</h3>
+                <p class="text-gray-300 mb-6">Делаем развитие доступным для каждого ребёнка</p>
+                <div class="border-t border-gray-700 pt-6">
+                    <p class="text-gray-400">© 2024 TIREKCARE. Все права защищены. Создано с ❤️ для детей и их семей.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 transform transition-all">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Добро пожаловать! 👋</h2>
+                <p class="text-gray-600">Начните путь развития вашего ребёнка</p>
+            </div>
+            
+            <div class="space-y-4">
+                <button onclick="window.location.href='catalog.html'" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300">
+                    Войти в каталог 📚
+                </button>
+                <button onclick="window.location.href='profile.html'" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300">
+                    Мой профиль 👤
+                </button>
+                <button onclick="closeAuthModal()" class="w-full bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-300">
+                    Позже, спасибо 👍
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.card-hover');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Animate counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-count]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            });
+        }
+
+        // Modal functions
+        function showAuthModal() {
+            document.getElementById('authModal').classList.remove('hidden');
+            anime({
+                targets: '#authModal > div',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutBack'
+            });
+        }
+
+        function closeAuthModal() {
+            anime({
+                targets: '#authModal > div',
+                scale: [1, 0.8],
+                opacity: [1, 0],
+                duration: 200,
+                easing: 'easeInBack',
+                complete: () => {
+                    document.getElementById('authModal').classList.add('hidden');
+                }
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial state for cards
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+
+            // Animate hero elements
+            anime({
+                targets: '.hero-content h1',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                duration: 1000,
+                delay: 300,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: '.hero-content p',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 800,
+                delay: 600,
+                easing: 'easeOutExpo'
+            });
+
+            anime({
+                targets: '.hero-content button',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 600,
+                delay: 900,
+                easing: 'easeOutBack'
+            });
+
+            // Start counter animation when statistics section is visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            const statsSection = document.querySelector('[data-count]').parentElement.parentElement;
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+
+        // Scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Close modal on outside click
+        document.getElementById('authModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeAuthModal();
+            }
+        });
+    </script>
+</body>
+</html>

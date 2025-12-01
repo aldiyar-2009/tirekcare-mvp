@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видео Урок - TIREKCARE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B6B, #FFE066);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FF6B6B;
+            transform: translateY(-2px);
+        }
+        .video-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        .instruction-card {
+            transition: all 0.3s ease;
+        }
+        .instruction-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            background: linear-gradient(135deg, #FF6B6B, #FFE066);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .success-animation {
+            animation: successPulse 2s ease-in-out;
+        }
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #FF6B6B;
+            font-size: 1.5rem;
+            animation: floatUp 3s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">TIREKCARE</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Главная</a>
+                        <a href="specialists.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Специалисты</a>
+                        <a href="catalog.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Каталог</a>
+                        <a href="profile.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Профиль</a>
+                        <a href="support.html" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Поддержка</a>
+                        <a href="#" onclick="showComingSoon()" class="nav-link text-gray-600 hover:text-gray-800 font-medium">Выход</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Video Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                    Развитие социальных навыков: Знакомимся с друзьями
+                </h1>
+                <div class="flex items-center justify-center space-x-6 text-gray-600">
+                    <span class="flex items-center">
+                        <span class="text-xl mr-2">🧩</span>
+                        РАС
+                    </span>
+                    <span class="flex items-center">
+                        <span class="text-xl mr-2">👶</span>
+                        6-8 лет
+                    </span>
+                    <span class="flex items-center">
+                        <span class="text-xl mr-2">⏱️</span>
+                        20 минут
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <!-- Video Player Section -->
+                <div class="lg:col-span-2">
+                    <!-- Video Player -->
+                    <div class="video-container mb-6 relative">
+                        <div class="video-placeholder">
+                            <div class="text-center">
+                                <div class="play-button mx-auto mb-4" onclick="startVideo()">
+                                    <svg class="w-8 h-8 text-gray-700 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M8 5v10l8-5-8-5z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-lg font-semibold">Нажмите для начала видео</p>
+                                <p class="text-sm opacity-75">Урок начнётся с приятной музыки</p>
+                            </div>
+                        </div>
+                        <div class="floating-hearts" id="floatingHearts"></div>
+                    </div>
+
+                    <!-- Video Description -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Описание урока</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            В этом уроке мы научимся устанавливать контакт с другими детьми через игровые ситуации. 
+                            Ребёнок научится здороваться, представляться и находить общие интересы с новыми друзьями.
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-2">🎯 Цели урока:</h3>
+                                <ul class="text-blue-700 text-sm space-y-1">
+                                    <li>• Научиться здороваться</li>
+                                    <li>• Представлять себя</li>
+                                    <li>• Находить общий язык</li>
+                                </ul>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-2">✨ Ожидаемый результат:</h3>
+                                <p class="text-green-700 text-sm">
+                                    Ребёнок сможет самостоятельно познакомиться с другим ребёнком и предложить совместную игру.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="markAsCompleted()" id="completeBtn" class="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-green-600 hover:to-green-700 transform hover:scale-105 transition-all duration-300">
+                            Задание выполнено! ✔️
+                        </button>
+                        <button onclick="window.location.href='catalog.html'" class="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300">
+                            Следующий урок ➡️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instructions Panel -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-24">
+                        <div class="flex items-center mb-6">
+                            <div class="text-2xl mr-3">👨‍👩‍👧‍👦</div>
+                            <h2 class="text-xl font-bold text-gray-800">Инструкции для родителей</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="instruction-card bg-yellow-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <div class="step-number">1</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-2">Подготовьте пространство</h3>
+                                        <p class="text-gray-600 text-sm">
+                                            Убедитесь, что ребёнок находится в тихом, комфортном месте без отвлекающих факторов.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="instruction-card bg-blue-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <div class="step-number">2</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-2">Будьте рядом</h3>
+                                        <p class="text-gray-600 text-sm">
+                                            Сядьте рядом с ребёнком и покажите заинтересованность в занятии.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="instruction-card bg-green-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <div class="step-number">3</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-2">Повторяйте упражнения</h3>
+                                        <p class="text-gray-600 text-sm">
+                                            После видео, попробуйте повторить упражнения вместе с ребёнком.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="instruction-card bg-purple-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <div class="step-number">4</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-2">Поощряйте успехи</h3>
+                                        <p class="text-gray-600 text-sm">
+                                            Хвалите ребёнка за любые попытки и достижения, даже если они маленькие.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="instruction-card bg-orange-50 p-4 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <div class="step-number">5</div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800 mb-2">Практикуйтесь</h3>
+                                        <p class="text-gray-600 text-sm">
+                                            Используйте полученные навыки в повседневной жизни - в парке, магазине, детской площадке.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tips Section -->
+                        <div class="mt-6 p-4 bg-gradient-to-r from-pink-50 to-orange-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">💡 Полезные советы:</h3>
+                            <ul class="text-gray-600 text-sm space-y-1">
+                                <li>• Не торопите ребёнка</li>
+                                <li>• Делайте перерывы при усталости</li>
+                                <li>• Используйте игровую форму</li>
+                                <li>• Будьте терпеливы и поддерживающими</li>
+                            </ul>
+                        </div>
+
+                        <!-- Support Info -->
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-2">📞 Нужна помощь?</h3>
+                            <p class="text-gray-600 text-sm">
+                                Если у вас возникли вопросы, обратитесь к нашему специалисту через чат поддержки.
+                            </p>
+                            <button onclick="showSupport()" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-colors">
+                                Написать специалисту
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center success-animation">
+            <div class="text-6xl mb-4">🎉</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Отличная работа!</h2>
+            <p class="text-gray-600 mb-6">
+                Упражнение успешно выполнено! Вы получаете +10 очков опыта и новое достижение!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="closeSuccessModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                    Продолжить позже
+                </button>
+                <button onclick="nextLesson()" class="flex-1 bg-gradient-to-r from-orange-400 to-coral-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-500 hover:to-coral-600 transition-all">
+                    Следующий урок
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-4">TIREKCARE</h3>
+                <p class="text-gray-300 mb-6">Делаем развитие доступным для каждого ребёнка</p>
+                <div class="border-t border-gray-700 pt-6">
+                    <p class="text-gray-400">© 2024 TIREKCARE. Все права защищены. Создано с ❤️ для детей и их семей.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startVideo() {
+            // Simulate video start
+            const videoContainer = document.querySelector('.video-placeholder');
+            videoContainer.innerHTML = `
+                <div class="text-center">
+                    <div class="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p class="text-lg font-semibold">Видео загружается...</p>
+                    <p class="text-sm opacity-75">Пожалуйста, подождите</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                videoContainer.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">🎬</div>
+                        <p class="text-lg font-semibold">Видео воспроизводится</p>
+                        <p class="text-sm opacity-75">Наслаждайтесь уроком!</p>
+                    </div>
+                `;
+                createFloatingHearts();
+            }, 2000);
+        }
+
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.bottom = '0px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }, 1000);
+        }
+
+        function markAsCompleted() {
+            const button = document.getElementById('completeBtn');
+            button.textContent = 'Сохраняем прогресс...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                showSuccessModal();
+                button.textContent = 'Задание выполнено! ✔️';
+                button.classList.remove('from-green-500', 'to-green-600');
+                button.classList.add('from-green-600', 'to-green-700');
+                button.disabled = false;
+            }, 1500);
+        }
+
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+            anime({
+                targets: '#successModal .bg-white',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 500,
+                easing: 'easeOutBack'
+            });
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        function nextLesson() {
+            closeSuccessModal();
+            window.location.href = 'catalog.html';
+        }
+
+        function showSupport() {
+            alert('Специалист скоро свяжется с вами! Ожидайте ответа в течение 15 минут. 📞');
+        }
+
+        function showComingSoon() {
+            alert('Функция выхода скоро будет доступна! 👋');
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate instruction cards
+            anime({
+                targets: '.instruction-card',
+                opacity: [0, 1],
+                translateX: [50, 0],
+                delay: anime.stagger(200),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Animate main content
+            anime({
+                targets: '.video-container',
+                scale: [0.95, 1],
+                opacity: [0, 1],
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+
+            // Animate buttons
+            anime({
+                targets: 'button',
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                delay: anime.stagger(100, {start: 1000}),
+                duration: 600,
+                easing: 'easeOutBack'
+            });
+        });
+
+        // Close modal on outside click
+        document.getElementById('successModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeSuccessModal();
+            }
+        });
+    </script>
+</body>
+</html>
