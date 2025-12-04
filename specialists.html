@@ -21,42 +21,50 @@
 <body class="gradient-bg min-h-screen">
     <!-- Навигация -->
     <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-primary">TIREKCARE 🌈</h1>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
-                        <a href="specialists.html" class="text-accent font-medium">Специалисты</a>
-                        <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
-                        <a href="profile.html" class="text-gray-600 hover:text-accent transition-colors">Профиль</a>
-                        <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
-                        <a href="auth.html" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">Вход</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-primary flex items-center">
+                    TIREKCARE
+                    <img src="logo.jpg" alt="Logo" style="height: 1.5em; width: auto; margin-left: 0.5em; vertical-align: middle;">
+                </h1>
+            </div>
+
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
+                    <a href="specialists.html" class="text-gray-600 hover:text-accent transition-colors">Специалисты</a>
+                    <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
+                    <a href="profile.html" class="text-gray-600 hover:text-accent transition-colors">Профиль</a>
+                    <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
+                    
+                    <a href="auth.html" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">Вход</a>
                 </div>
             </div>
-        </div>
-        <!-- Мобильное меню -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
-                <a href="specialists.html" class="block px-3 py-2 text-accent font-medium">Специалисты</a>
-                <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
-                <a href="profile.html" class="block px-3 py-2 text-gray-600">Профиль</a>
-                <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
-                <a href="auth.html" class="block px-3 py-2 bg-accent text-white rounded-lg mx-3 text-center">Вход</a>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
-    </nav>
+    </div>
+    
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
+            <a href="specialists.html" class="block px-3 py-2 text-gray-600">Специалисты</a>
+            <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
+            <a href="profile.html" class="block px-3 py-2 text-gray-600">Профиль</a>
+            <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
+            
+            <a href="auth.html" class="block px-3 py-2 bg-accent text-white rounded-lg mx-3 text-center">Вход</a>
+        </div>
+    </div>
+</nav>
 
     <!-- Основной контент -->
     <main>
