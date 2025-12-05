@@ -1,14 +1,34 @@
 // Конфигурация Firebase для TIREKCARE
 // Это заглушка для демонстрации структуры
 
+// firebase-config.js
+
+// 1. Импорт НУЖНЫХ функций из Modular SDK (v9+)
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js';
+// Инициализируйте: const analytics = getAnalytics(app);
+// И экспортируйте: export { auth, db, app, analytics };
+
+// Your web app's Firebase configurationч
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB_w9ykY_XCORRuB2bAFRtPObhrrewZi0E",
+  authDomain: "tirekcare.firebaseapp.com",
+  projectId: "tirekcare",
+  storageBucket: "tirekcare.firebasestorage.app",
+  messagingSenderId: "390665141530",
+  appId: "1:390665141530:web:2b08c564f48118596e00a3",
+  measurementId: "G-RVTX2NNS51"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app); 
+const db = getFirestore(app);
+export { auth, db, app };
 
 // Инициализация Firebase (закомментировано для демонстрации)
 // import { initializeApp } from "firebase/app";
@@ -104,7 +124,7 @@ const firebaseService = {
         //     message,
         //     timestamp: serverTimestamp(),
         //     status: 'new'
-        // });
+        // });  
         return Promise.resolve();
     }
 };

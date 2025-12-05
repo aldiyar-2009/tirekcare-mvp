@@ -1,4 +1,20 @@
-// Основной JavaScript файл TIREKCARE
+// main.js (ИСПРАВЛЕНО)
+
+// 1. Импорт локальных объектов
+import { auth, db } from './firebase-config.js'; 
+
+// 2. Импорт функций Firebase из CDN
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut 
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js'; 
+
+import { 
+    doc, 
+    setDoc 
+} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js'; 
+// ...
 
 document.addEventListener('DOMContentLoaded', function() {
     // Инициализация всех компонентов
@@ -85,22 +101,27 @@ function initChat() {
 
 // Формы авторизации
 function initAuthForms() {
-    const showRegister = document.getElementById('show-register');
-    const showLogin = document.getElementById('show-login');
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const registerLink = document.getElementById('register-link');
+    // Получение всех необходимых элементов по ID
+    const showRegister = document.getElementById('show-register'); // Кнопка "Нет аккаунта?"
+    const showLogin = document.getElementById('show-login');       // Кнопка "Уже есть аккаунт?"
+    const loginForm = document.getElementById('login-form');       // Форма Входа
+    const registerForm = document.getElementById('register-form');   // Форма Регистрации
+    const registerLink = document.getElementById('register-link');   // Блок текста с кнопкой "Войти"
     
-    if (showRegister && registerForm && loginForm) {
+    // ЛОГИКА ПЕРЕХОДА НА РЕГИСТРАЦИЮ
+    if (showRegister && registerForm && loginForm && registerLink) {
         showRegister.addEventListener('click', function() {
+            // Скрыть форму входа и показать форму регистрации и ссылку "Войти"
             loginForm.classList.add('hidden');
             registerForm.classList.remove('hidden');
             registerLink.classList.remove('hidden');
         });
     }
     
-    if (showLogin && registerForm && loginForm) {
+    // ЛОГИКА ПЕРЕХОДА НА ВХОД
+    if (showLogin && registerForm && loginForm && registerLink) {
         showLogin.addEventListener('click', function() {
+            // Скрыть форму регистрации и ссылку "Войти" и показать форму входа
             registerForm.classList.add('hidden');
             registerLink.classList.add('hidden');
             loginForm.classList.remove('hidden');
@@ -108,27 +129,95 @@ function initAuthForms() {
     }
     
     // Обработка форм
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Имитация входа
-            showNotification('Успешный вход! Перенаправление...', 'success');
-            setTimeout(() => {
-                window.location.href = 'profile.html';
-            }, 1500);
-        });
-    }
-    
     if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Имитация регистрации
-            showNotification('Регистрация успешна! Добро пожаловать!', 'success');
-            setTimeout(() => {
-                window.location.href = 'profile.html';
-            }, 1500);
-        });
-    }
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // 1. Получение данных из полей (ID полей должны быть в auth.html!)
+            const name = registerForm.querySelector('#register-name').value;
+            const email = registerForm.querySelector('#register-email').value;
+            const password = registerForm.querySelector('#register-password').value;
+            const age = registerForm.querySelector('#register-age').value; 
+            const features = registerForm.querySelector('#register-features').value;
+
+            try {
+                // 2. Регистрация пользователя в Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // 3. Сохранение дополнительных данных в Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    name: name,
+                    email: email,
+                    childAge: age,
+                    childFeatures: features,
+                    role: 'user', // Установим роль по умолчанию
+                    createdAt: new Date()
+                });
+
+                // 4. Успех и перенаправление
+                showNotification('Регистрация успешна! Добро пожаловать!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
+
+            } catch (error) {
+                // 5. Обработка ошибок Firebase
+                console.error("Ошибка при регистрации:", error);
+                let message;
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                        message = 'Этот email уже используется.';
+                        break;
+                    case 'auth/invalid-email':
+                        message = 'Некорректный формат email.';
+                        break;
+                    case 'auth/weak-password':
+                        message = 'Пароль должен быть не менее 6 символов.';
+                        break;
+                    default:
+                        message = 'Ошибка регистрации. Попробуйте снова.';
+                }
+                showNotification(message, 'error');
+            }
+        });
+    }
+    
+    // --- ОБРАБОТКА ВХОДА (НОВАЯ ЛОГИКА) ---
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // 1. Получение данных
+            const email = loginForm.querySelector('#login-email').value;
+            const password = loginForm.querySelector('#login-password').value;
+
+            try {
+                // 2. Вход пользователя в Firebase Auth
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                // 3. Успех и перенаправление
+                showNotification('Успешный вход! Перенаправление...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1500);
+
+            } catch (error) {
+                // 4. Обработка ошибок Firebase
+                console.error("Ошибка при входе:", error);
+                let message;
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                    case 'auth/wrong-password':
+                        message = 'Неправильный email или пароль.';
+                        break;
+                    default:
+                        message = 'Ошибка входа. Попробуйте снова.';
+                }
+                showNotification(message, 'error');
+            }
+        });
+    }
 }
 
 // Фильтры видео
@@ -325,17 +414,23 @@ function showNotification(message, type = 'info') {
 
 // Выход из системы
 function initLogout() {
-    const logoutBtns = document.querySelectorAll('#logout-btn, #logout-btn-mobile');
-    logoutBtns.forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', function() {
-                showNotification('Вы вышли из системы', 'info');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-            });
-        }
-    });
+    const logoutBtns = document.querySelectorAll('#logout-btn, #logout-btn-mobile');
+    logoutBtns.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', async function() { // Добавили async
+                try {
+                    await signOut(auth); // Выход из системы
+                    showNotification('Вы вышли из системы', 'info');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } catch (error) {
+                    console.error("Ошибка при выходе:", error);
+                    showNotification('Ошибка при выходе. Попробуйте снова.', 'error');
+                }
+            });
+        }
+    });
 }
 
 // Инициализация выхода
