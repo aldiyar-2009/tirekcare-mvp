@@ -69,51 +69,31 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
     <!-- Navigation -->
-<nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+<nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20"> <div class="flex items-center">
+                <a href="index.html" class="text-3xl font-extrabold tracking-tighter text-gray-900 flex items-center gap-2">
+                    <img src="logo.jpg" alt="Logo" style="height: 1.5em; width: auto; margin-left: 0.5em; vertical-align: middle;">
+                    TIREKCARE
+                </a>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-orange-500 font-medium transition-colors">Главная</a>
+                <a href="catalog.html" class="hover:text-orange-500 font-medium transition-colors">Каталог</a>
+                <a href="profile.html" class="hover:text-orange-500 font-medium transition-colors">Профиль</a>
+                <a href="support.html" class="hover:text-orange-500 font-medium transition-colors">Поддержка</a>
                 
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-primary flex items-center">
-                        TIREKCARE
-                        <img src="logo.jpg" alt="Logo" style="height: 1.5em; width: auto; margin-left: 0.5em; vertical-align: middle;">
-                    </h1>
+                <div class="flex bg-gray-100 rounded-lg p-1 text-xs font-bold">
+                    <button class="px-2 py-1 bg-white shadow-sm rounded-md">RU</button>
+                    <button class="px-2 py-1 text-gray-500">KZ</button>
                 </div>
 
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-4">
-                        <a href="index.html" class="text-gray-600 hover:text-accent transition-colors">Главная</a>
-                        <a href="specialists.html" class="text-gray-600 hover:text-accent transition-colors">Специалисты</a>
-                        <a href="catalog.html" class="text-gray-600 hover:text-accent transition-colors">Каталог</a>
-                        <a href="profile.html" class="text-gray-600 hover:text-accent transition-colors">Профиль</a>
-                        <a href="support.html" class="text-gray-600 hover:text-accent transition-colors">Поддержка</a>
-                        
-                        <a href="auth.html" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">Вход</a>
-                    </div>
-                </div>
-
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-accent">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+                <a href="auth.html" id="login-btn" class="bg-orange-500 text-white px-6 py-2.5 rounded-xl hover:bg-orange-600 transition-all font-bold shadow-lg shadow-orange-200">Вход</a>
             </div>
         </div>
-        
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block px-3 py-2 text-gray-600">Главная</a>
-                <a href="specialists.html" class="block px-3 py-2 text-gray-600">Специалисты</a>
-                <a href="catalog.html" class="block px-3 py-2 text-gray-600">Каталог</a>
-                <a href="profile.html" class="block px-3 py-2 text-gray-600">Профиль</a>
-                <a href="support.html" class="block px-3 py-2 text-gray-600">Поддержка</a>
-                
-                <a href="auth.html" class="block px-3 py-2 bg-accent text-white rounded-lg mx-3 text-center">Вход</a>
-            </div>
-        </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Hero Section -->
     <section class="hero-bg pt-20 pb-16">
@@ -240,51 +220,45 @@
                 <!-- Review 1 -->
                 <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="resources/child-avatar-1.jpg" alt="Мария" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h3 class="font-semibold text-gray-800">Мария, мама Саши (5 лет)</h3>
+                            <h3 class="font-semibold text-gray-800">Айгуль Серикова</h3>
                             <div class="flex text-yellow-400">
                                 ⭐⭐⭐⭐⭐
                             </div>
                         </div>
                     </div>
                     <p class="text-gray-600 leading-relaxed">
-                        "Регулярные занятия помогли нам сохранить прогревотивно! Саша стал более общительным, 
-                        появился интерес к занятиям. Особенно нравятся игровые упражнения."
+                        Керемет платформа! Балама өте ұнайды.
                     </p>
                 </div>
 
                 <!-- Review 2 -->
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="resources/child-avatar-2.jpg" alt="Анна" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h3 class="font-semibold text-gray-800">Анна, мама Кати (7 лет)</h3>
+                            <h3 class="font-semibold text-gray-800">Бауыржан Ахметов</h3>
                             <div class="flex text-yellow-400">
                                 ⭐⭐⭐⭐⭐
                             </div>
                         </div>
                     </div>
                     <p class="text-gray-600 leading-relaxed">
-                        "Очень удобно заниматься дома в удобное время. Поддержка специалистов просто супер! 
-                        Всегда помогут и подскажут. Рекомендую всем родителям!"
+                        Очень удобный интерфейс и полезные упражнения.
                     </p>
                 </div>
 
                 <!-- Review 3 -->
                 <div class="bg-gradient-to-br from-green-50 to-teal-100 rounded-2xl p-6 shadow-lg">
                     <div class="flex items-center mb-4">
-                        <img src="resources/child-avatar-3.jpg" alt="Ольга" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h3 class="font-semibold text-gray-800">Ольга, мама Димы (6 лет)</h3>
+                            <h3 class="font-semibold text-gray-800">Динара Касымова</h3>
                             <div class="flex text-yellow-400">
-                                ⭐⭐⭐⭐⭐
+                                ⭐⭐⭐⭐
                             </div>
                         </div>
                     </div>
                     <p class="text-gray-600 leading-relaxed">
-                        "Замечательная платформа! Дима с удовольствием занимается каждый день. 
-                        Виден прогресс в развитии речи и моторики. Спасибо за такой проект!"
+                        TIREKCARE көмегімен прогресс байкалады.
                     </p>
                 </div>
             </div>
